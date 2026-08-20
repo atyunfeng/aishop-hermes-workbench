@@ -1,0 +1,25 @@
+{
+  "id": "we-com",
+  "name": "企业微信指挥",
+  "version": "1.0.0",
+  "package_aliases": ["com.tencent.wework"],
+  "supported_app_versions": {"com.tencent.wework": {"min": "0", "max": null}},
+  "fixture_version": 1,
+  "page_markers": {"conversation": {"description_any": ["输入消息"]}},
+  "required_capabilities": ["accessibility"],
+  "workflows": {
+    "instruction_report": {
+      "description": "向白名单企业微信群汇报多手机任务摘要",
+      "risk_action": "reply",
+      "required_inputs": ["package_name", "conversation_name", "report_text"],
+      "steps": [
+        {"id": "launch", "action": "LAUNCH_APP", "arguments": {"package_name": "{{package_name}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_conversation", "action": "TAP_NODE", "arguments": {"text_any": ["{{conversation_name}}"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "write_report", "action": "SET_TEXT", "arguments": {"description_any": ["输入消息"], "text": "{{report_text}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "send", "action": "TAP_NODE", "arguments": {"text_any": ["发送"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "verify", "action": "VERIFY_NODE", "arguments": {"text_any": ["{{report_text}}"]}, "timeout_seconds": 15, "evidence_required": true},
+        {"id": "evidence", "action": "CAPTURE_SCREEN", "arguments": {"label": "企业微信指挥汇报回执"}, "timeout_seconds": 15, "evidence_required": true}
+      ]
+    }
+  }
+}

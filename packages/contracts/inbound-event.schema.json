@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "inbound-event.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_id", "source", "account_id", "conversation_id", "sender", "event_type", "text", "attachments", "occurred_at"],
+  "properties": {
+    "event_id": {"type": "string", "minLength": 1, "maxLength": 200},
+    "source": {"enum": ["qian-niu", "dou-dian", "we-chat", "we-com", "qq"]},
+    "account_id": {"type": "string", "minLength": 1, "maxLength": 200},
+    "conversation_id": {"type": "string", "minLength": 1, "maxLength": 200},
+    "sender": {"type": "string", "minLength": 1, "maxLength": 200},
+    "event_type": {"enum": ["MESSAGE", "IMAGE", "ORDER", "INSTRUCTION"]},
+    "text": {"type": "string", "maxLength": 4000},
+    "attachments": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "media_type"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1, "maxLength": 200},
+          "media_type": {"type": "string", "minLength": 1, "maxLength": 100}
+        }
+      }
+    },
+    "occurred_at": {"type": "string", "format": "date-time"}
+  }
+}

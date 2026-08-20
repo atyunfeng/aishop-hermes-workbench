@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.device-pair-request.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pairing_code", "device_id", "display_name", "app_version", "capabilities"],
+  "properties": {
+    "pairing_code": { "type": "string", "pattern": "^[0-9]{6}$" },
+    "device_id": { "type": "string", "minLength": 1 },
+    "display_name": { "type": "string", "minLength": 1 },
+    "app_version": { "type": "string", "minLength": 1 },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    }
+  }
+}

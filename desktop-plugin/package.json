@@ -1,0 +1,27 @@
+{
+  "name": "@aishop/desktop-plugin",
+  "private": true,
+  "version": "0.1.0",
+  "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atyunfeng/aishop-hermes-workbench.git",
+    "directory": "desktop-plugin"
+  },
+  "bugs": {
+    "url": "https://github.com/atyunfeng/aishop-hermes-workbench/issues"
+  },
+  "homepage": "https://github.com/atyunfeng/aishop-hermes-workbench#readme",
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build.mjs",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "esbuild": "^0.25.0",
+    "react": "^19.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}

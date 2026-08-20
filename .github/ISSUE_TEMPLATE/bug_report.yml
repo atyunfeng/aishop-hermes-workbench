@@ -1,0 +1,44 @@
+name: Bug report
+description: Report a reproducible AIShop defect without customer data or secrets.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Do not post tokens, credentials, customer conversations, order data or unredacted screenshots.
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Deterministic simulation
+        - Windows and Hermes Desktop
+        - Android Worker
+        - Real platform application
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0-alpha or commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Reproduction steps
+      description: Use synthetic identifiers and redact all sensitive data.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation performed
+      description: State clearly whether the result is simulated or from a physical device.

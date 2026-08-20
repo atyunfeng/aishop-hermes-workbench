@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.device-heartbeat.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "sequence",
+    "worker_state",
+    "current_task_id",
+    "battery_percent",
+    "permissions",
+    "installed_apps",
+    "acknowledged_command_id",
+    "completed_step"
+  ],
+  "properties": {
+    "sequence": { "type": "integer", "minimum": 1 },
+    "worker_state": {
+      "type": "string",
+      "enum": ["OFFLINE", "IDLE", "BUSY", "PAUSED", "TAKEOVER", "ERROR"]
+    },
+    "current_task_id": {
+      "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+    },
+    "battery_percent": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notifications", "accessibility", "screen_capture"],
+      "properties": {
+        "notifications": { "type": "boolean" },
+        "accessibility": { "type": "boolean" },
+        "screen_capture": { "type": "boolean" }
+      }
+    },
+    "installed_apps": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/installed_app" }
+    },
+    "acknowledged_command_id": {
+      "oneOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }]
+    },
+    "completed_step": {
+      "oneOf": [{ "$ref": "device-step-result.schema.json" }, { "type": "null" }]
+    }
+  },
+  "$defs": {
+    "installed_app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_name", "version_name"],
+      "properties": {
+        "package_name": { "type": "string", "minLength": 1 },
+        "version_name": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

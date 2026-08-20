@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.device-job.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["job_id", "task_id", "app_skill_id", "skill_version", "lease_id", "lease_expires_at", "steps"],
+  "properties": {
+    "job_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "app_skill_id": {"type": "string", "minLength": 1},
+    "skill_version": {"type": "string", "minLength": 1},
+    "lease_id": {"type": "string", "minLength": 1},
+    "lease_expires_at": {"type": "string", "format": "date-time"},
+    "steps": {"type": "array", "minItems": 1, "maxItems": 50, "items": {"$ref": "#/$defs/step"}}
+  },
+  "$defs": {
+    "selector": {
+      "oneOf": [
+        {"type": "object", "additionalProperties": false, "required": ["text_any"], "properties": {"text_any": {"type": "array", "minItems": 1, "maxItems": 10, "items": {"type": "string", "minLength": 1, "maxLength": 120}}}},
+        {"type": "object", "additionalProperties": false, "required": ["description_any"], "properties": {"description_any": {"type": "array", "minItems": 1, "maxItems": 10, "items": {"type": "string", "minLength": 1, "maxLength": 120}}}},
+        {"type": "object", "additionalProperties": false, "required": ["view_id_any"], "properties": {"view_id_any": {"type": "array", "minItems": 1, "maxItems": 10, "items": {"type": "string", "minLength": 1, "maxLength": 120}}}}
+      ]
+    },
+    "step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["step_id", "ordinal", "action", "arguments", "timeout_seconds", "evidence_required"],
+      "properties": {
+        "step_id": {"type": "string", "minLength": 1},
+        "ordinal": {"type": "integer", "minimum": 0},
+        "action": {"type": "string", "enum": ["LAUNCH_APP", "TAP_NODE", "SET_TEXT", "SCROLL", "BACK", "WAIT_FOR", "VERIFY_NODE", "CAPTURE_SCREEN"]},
+        "arguments": {"type": "object", "not": {"anyOf": [{"required": ["x"]}, {"required": ["y"]}, {"required": ["coordinates"]}, {"required": ["shell"]}, {"required": ["script"]}] }},
+        "timeout_seconds": {"type": "integer", "minimum": 1, "maximum": 60},
+        "evidence_required": {"type": "boolean"}
+      }
+    }
+  }
+}

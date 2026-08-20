@@ -1,0 +1,1 @@
+{"fixture_version":1,"package_name":"com.taobao.qianniu","app_version":"9.8.0","page":"conversation","nodes":[{"view_id":"com.taobao.qianniu:id/input","content_description":"输入消息","clickable":true},{"text":"发送","clickable":true}]}

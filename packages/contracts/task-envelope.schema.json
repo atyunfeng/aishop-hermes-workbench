@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.task-envelope.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "task_id",
+    "idempotency_key",
+    "source",
+    "title",
+    "state",
+    "version",
+    "created_at",
+    "updated_at"
+  ],
+  "properties": {
+    "task_id": { "type": "string", "minLength": 1 },
+    "idempotency_key": { "type": "string", "minLength": 1 },
+    "source": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "state": {
+      "type": "string",
+      "enum": [
+        "RECEIVED",
+        "PLANNING",
+        "WAITING_APPROVAL",
+        "QUEUED",
+        "ASSIGNED",
+        "EXECUTING",
+        "VERIFYING",
+        "SUCCEEDED",
+        "RETRY_WAIT",
+        "HUMAN_TAKEOVER",
+        "FAILED",
+        "CANCELLED"
+      ]
+    },
+    "version": { "type": "integer", "minimum": 1 },
+    "created_at": { "type": "string", "format": "date-time" },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.evidence-envelope.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "task_id", "job_id", "step_id", "source", "media_type", "sha256", "byte_size", "label", "created_at"],
+  "properties": {
+    "evidence_id": {"type": "string", "minLength": 1},
+    "task_id": {"type": "string", "minLength": 1},
+    "job_id": {"type": "string", "minLength": 1},
+    "step_id": {"type": "string", "minLength": 1},
+    "source": {"type": "string", "enum": ["DEVICE", "SIMULATED"]},
+    "media_type": {"type": "string", "enum": ["image/png", "image/jpeg", "text/plain"]},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "byte_size": {"type": "integer", "minimum": 0, "maximum": 716800},
+    "label": {"type": "string", "minLength": 1, "maxLength": 120},
+    "created_at": {"type": "string", "format": "date-time"}
+  }
+}
