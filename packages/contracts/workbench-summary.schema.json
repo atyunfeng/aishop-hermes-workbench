@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.workbench-summary.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["generated_at", "task_counts", "devices", "approvals", "recent_tasks"],
+  "properties": {
+    "generated_at": { "type": "string", "format": "date-time" },
+    "task_counts": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "devices": {
+      "type": "array",
+      "items": { "$ref": "device-envelope.schema.json" }
+    },
+    "approvals": { "type": "array", "items": { "type": "object" } },
+    "recent_tasks": {
+      "type": "array",
+      "items": { "$ref": "task-envelope.schema.json" }
+    }
+  }
+}

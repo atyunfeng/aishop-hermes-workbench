@@ -1,0 +1,12 @@
+name: aishop
+version: 0.1.0
+manifest_version: 2
+api_version: 1
+description: Local AI employee command center for ecommerce demonstrations
+provides_tools:
+  - aishop_create_task
+  - aishop_get_task
+  - aishop_transition_task
+  - aishop_stop_all
+  - aishop_dispatch_workflow
+tags: [ecommerce, automation, desktop, android]

@@ -1,0 +1,24 @@
+{
+  "id": "qq",
+  "name": "QQ 基础客服",
+  "version": "1.0.0",
+  "package_aliases": ["com.tencent.mobileqq"],
+  "supported_app_versions": {"com.tencent.mobileqq": {"min": "0", "max": null}},
+  "fixture_version": 1,
+  "page_markers": {"conversation": {"description_any": ["输入消息"]}},
+  "required_capabilities": ["accessibility"],
+  "workflows": {
+    "basic_reply": {
+      "description": "向白名单 QQ 测试联系人发送单条基础回复",
+      "risk_action": "send_test_message",
+      "required_inputs": ["package_name", "customer_name", "reply_text"],
+      "steps": [
+        {"id": "launch", "action": "LAUNCH_APP", "arguments": {"package_name": "{{package_name}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_customer", "action": "TAP_NODE", "arguments": {"text_any": ["{{customer_name}}"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "write_reply", "action": "SET_TEXT", "arguments": {"description_any": ["输入消息"], "text": "{{reply_text}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "send", "action": "TAP_NODE", "arguments": {"text_any": ["发送"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "evidence", "action": "CAPTURE_SCREEN", "arguments": {"label": "QQ 基础接入回执"}, "timeout_seconds": 15, "evidence_required": true}
+      ]
+    }
+  }
+}

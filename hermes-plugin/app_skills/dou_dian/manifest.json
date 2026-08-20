@@ -1,0 +1,40 @@
+{
+  "id": "dou-dian",
+  "name": "抖店飞鸽售后",
+  "version": "1.0.0",
+  "package_aliases": ["com.bytedance.ep.android", "com.ss.android.ugc.aweme"],
+  "supported_app_versions": {"com.bytedance.ep.android": {"min": "0", "max": null}, "com.ss.android.ugc.aweme": {"min": "0", "max": null}},
+  "fixture_version": 1,
+  "page_markers": {"after_sales": {"text_any": ["售后"]}},
+  "required_capabilities": ["accessibility"],
+  "workflows": {
+    "image_after_sales_reply": {
+      "description": "读取测试订单售后会话并发送不涉及退款执行的处理说明",
+      "risk_action": "reply",
+      "required_inputs": ["package_name", "order_id", "reply_text"],
+      "steps": [
+        {"id": "launch", "action": "LAUNCH_APP", "arguments": {"package_name": "{{package_name}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_after_sales", "action": "TAP_NODE", "arguments": {"text_any": ["售后"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_order", "action": "TAP_NODE", "arguments": {"text_any": ["{{order_id}}"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "write_reply", "action": "SET_TEXT", "arguments": {"description_any": ["输入消息"], "text": "{{reply_text}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "send", "action": "TAP_NODE", "arguments": {"text_any": ["发送"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "evidence", "action": "CAPTURE_SCREEN", "arguments": {"label": "抖店飞鸽售后回复回执"}, "timeout_seconds": 15, "evidence_required": true}
+      ]
+    },
+    "create_return_request": {
+      "description": "为测试订单创建退货申请，提交前后均采集页面验证",
+      "risk_action": "return_goods",
+      "required_inputs": ["package_name", "order_id", "reason"],
+      "steps": [
+        {"id": "launch", "action": "LAUNCH_APP", "arguments": {"package_name": "{{package_name}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_after_sales", "action": "TAP_NODE", "arguments": {"text_any": ["售后"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "open_order", "action": "TAP_NODE", "arguments": {"text_any": ["{{order_id}}"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "choose_return", "action": "TAP_NODE", "arguments": {"text_any": ["退货退款"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": true},
+        {"id": "write_reason", "action": "SET_TEXT", "arguments": {"description_any": ["退货原因"], "text": "{{reason}}"}, "timeout_seconds": 15, "evidence_required": false},
+        {"id": "verify", "action": "VERIFY_NODE", "arguments": {"text_any": ["提交申请"]}, "timeout_seconds": 15, "evidence_required": true},
+        {"id": "submit", "action": "TAP_NODE", "arguments": {"text_any": ["提交申请"], "require_clickable": true}, "timeout_seconds": 15, "evidence_required": true},
+        {"id": "evidence", "action": "CAPTURE_SCREEN", "arguments": {"label": "抖店退货申请回执"}, "timeout_seconds": 15, "evidence_required": true}
+      ]
+    }
+  }
+}

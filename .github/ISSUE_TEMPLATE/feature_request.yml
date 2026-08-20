@@ -1,0 +1,36 @@
+name: Feature request
+description: Propose one focused capability or App Skill improvement.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: Describe the operator problem, not only the preferred implementation.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+    validations:
+      required: true
+  - type: textarea
+    id: safety
+    attributes:
+      label: Safety and privacy impact
+      description: Explain approvals, data access, evidence and human takeover requirements.
+    validations:
+      required: true
+  - type: dropdown
+    id: validation
+    attributes:
+      label: Available validation environment
+      options:
+        - Simulation only
+        - Physical Android device
+        - Windows and Hermes Desktop
+        - Real platform test account
+    validations:
+      required: true

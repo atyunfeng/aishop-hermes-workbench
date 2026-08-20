@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aishop.device-envelope.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "device_id",
+    "display_name",
+    "online",
+    "worker_state",
+    "app_version",
+    "capabilities",
+    "battery_percent",
+    "permissions",
+    "installed_apps",
+    "last_heartbeat_at",
+    "pending_command"
+  ],
+  "properties": {
+    "device_id": { "type": "string", "minLength": 1 },
+    "display_name": { "type": "string", "minLength": 1 },
+    "online": { "type": "boolean" },
+    "worker_state": {
+      "type": "string",
+      "enum": ["OFFLINE", "IDLE", "BUSY", "PAUSED", "TAKEOVER", "ERROR"]
+    },
+    "app_version": { "type": "string", "minLength": 1 },
+    "capabilities": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "battery_percent": {
+      "oneOf": [
+        { "type": "integer", "minimum": 0, "maximum": 100 },
+        { "type": "null" }
+      ]
+    },
+    "permissions": { "$ref": "#/$defs/permissions" },
+    "installed_apps": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/installed_app" }
+    },
+    "last_heartbeat_at": {
+      "oneOf": [
+        { "type": "string", "format": "date-time" },
+        { "type": "null" }
+      ]
+    },
+    "pending_command": {
+      "oneOf": [
+        { "$ref": "#/$defs/command" },
+        { "type": "null" }
+      ]
+    }
+  },
+  "$defs": {
+    "permissions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notifications", "accessibility", "screen_capture"],
+      "properties": {
+        "notifications": { "type": "boolean" },
+        "accessibility": { "type": "boolean" },
+        "screen_capture": { "type": "boolean" }
+      }
+    },
+    "installed_app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["package_name", "version_name"],
+      "properties": {
+        "package_name": { "type": "string", "minLength": 1 },
+        "version_name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "command": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command_id", "type", "reason", "created_at"],
+      "properties": {
+        "command_id": { "type": "string", "minLength": 1 },
+        "type": {
+          "type": "string",
+          "enum": ["PAUSE", "RESUME", "TAKEOVER", "STOP"]
+        },
+        "reason": { "type": "string", "minLength": 1 },
+        "created_at": { "type": "string", "format": "date-time" }
+      }
+    }
+  }
+}

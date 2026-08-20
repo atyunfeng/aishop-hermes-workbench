@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AIShop Worker</string>
+    <string name="accessibility_description">仅按 Hermes 下发的版本化 App Skill 执行语义节点动作；遇到验证码、登录失效或未知页面立即停止。</string>
+    <string name="open_source_notice">AIShop v0.1.0-alpha · AGPLv3 · 按原样提供，不附带担保</string>
+    <string name="open_source_link">查看完整源码</string>
+</resources>

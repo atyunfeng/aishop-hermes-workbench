@@ -1,0 +1,6 @@
+[
+  {"order_id": "DEMO-QN-1001", "customer": "AIShop 测试客户", "platform": "千牛", "status": "已发货", "tracking": "SF-DEMO-001"},
+  {"order_id": "DEMO-DD-2001", "customer": "AIShop 售后测试客户", "platform": "抖店", "status": "售后咨询", "amount": 99.0},
+  {"order_id": "DEMO-WX-3001", "customer": "AIShop 微信测试客户", "platform": "微信", "status": "待回复"},
+  {"order_id": "DEMO-WECOM-4001", "customer": "AIShop 企业微信测试群", "platform": "企业微信", "status": "指令待汇报"}
+]

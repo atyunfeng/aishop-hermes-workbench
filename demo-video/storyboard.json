@@ -1,0 +1,80 @@
+{
+  "title": "AIShop Hermes 电商 AI 自动工作台",
+  "width": 1080,
+  "height": 1920,
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "hook",
+      "duration": 5,
+      "title": "五个平台，一套 AI 工作台",
+      "narration": "千牛、抖店、微信、企业微信和 QQ，现在由一套 AI 工作台统一调度。",
+      "visual": "hook",
+      "bullets": ["24 小时自动接待", "桌面大脑 + AI 手机员工", "SIMULATED 模拟功能演示"]
+    },
+    {
+      "id": "inbound",
+      "duration": 7,
+      "title": "咨询进入，AI 自动接管",
+      "narration": "客户在千牛咨询订单，消息进入工作台，AI 立即识别客户、订单和问题类型。",
+      "visual": "inbound",
+      "bullets": ["千牛新咨询", "订单 DEMO-QN-1001", "SIMULATED 入站事件"]
+    },
+    {
+      "id": "planning",
+      "duration": 7,
+      "title": "Hermes 自主决策与规划",
+      "narration": "桌面大脑检索知识库，判断风险，再生成版本化 App Skill 执行计划。",
+      "visual": "planning",
+      "bullets": ["知识检索命中", "风险等级：低", "SIMULATED 安全执行计划"]
+    },
+    {
+      "id": "qian_niu",
+      "duration": 8,
+      "title": "AI 手机员工处理千牛",
+      "narration": "手机员工打开千牛，定位测试会话，输入回复，并在发送后验证页面结果。",
+      "visual": "phone",
+      "bullets": ["打开千牛", "定位语义节点", "SIMULATED 已验证回复"]
+    },
+    {
+      "id": "dou_dian",
+      "duration": 9,
+      "title": "抖店售后，风险动作先审批",
+      "narration": "遇到退换货咨询，AI 可以先答复；真正创建退货时，必须由操作员精确审批。",
+      "visual": "approval",
+      "bullets": ["售后意图识别", "一次性范围审批", "SIMULATED 未执行真实退货"]
+    },
+    {
+      "id": "orchestration",
+      "duration": 8,
+      "title": "多台 AI 手机员工并行执行",
+      "narration": "Hermes 同时调度千牛和抖店手机员工，企业微信负责接收指令并汇总结果。",
+      "visual": "orchestration",
+      "bullets": ["员工 09：千牛", "员工 12：抖店", "SIMULATED 企业微信汇总"]
+    },
+    {
+      "id": "channels",
+      "duration": 7,
+      "title": "微信、企微、QQ 统一入口",
+      "narration": "微信、企业微信和 QQ 通知进入同一队列；验证码、登录失效或未知页面立即转人工。",
+      "visual": "channels",
+      "bullets": ["通知白名单", "幂等事件队列", "SIMULATED 人工接管"]
+    },
+    {
+      "id": "audit",
+      "duration": 8,
+      "title": "每一步都有证据和审计",
+      "narration": "任务必须经过执行、验证再成功；操作、证据摘要和审批记录都能回看。",
+      "visual": "audit",
+      "bullets": ["EXECUTING", "VERIFYING", "SIMULATED SUCCEEDED"]
+    },
+    {
+      "id": "closing",
+      "duration": 7,
+      "title": "AIShop Hermes 一体化工作台",
+      "narration": "自动客服、售后协同、多手机调度、人工审批和全程审计，一套工作台完成。",
+      "visual": "closing",
+      "bullets": ["Alpha 演示版已就绪", "真机效果按验收清单验证", "SIMULATED 功能模拟"]
+    }
+  ]
+}
