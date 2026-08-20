@@ -21,5 +21,6 @@ rg -q 'cleartextTrafficPermitted="false"' "$worker_root/app/src/main/res/xml/net
 test -f "$apk_source"
 mkdir -p "$artifact_dir"
 cp "$apk_source" "$apk_target"
-shasum -a 256 "$apk_target" > "$apk_target.sha256"
+apk_digest="$(shasum -a 256 "$apk_target" | awk '{print $1}')"
+printf '%s  %s\n' "$apk_digest" "$(basename "$apk_target")" > "$apk_target.sha256"
 printf 'Android Worker APK: %s\n' "$apk_target"
