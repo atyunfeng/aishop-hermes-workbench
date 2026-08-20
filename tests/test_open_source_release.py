@@ -87,6 +87,11 @@ def test_release_bundle_inputs_include_corresponding_source_and_notices():
     }
 
 
+def test_apk_checksum_is_portable():
+    verifier = (ROOT / "scripts" / "verify-android-worker.sh").read_text(encoding="utf-8")
+    assert '"$(basename "$apk_target")" > "$apk_target.sha256"' in verifier
+
+
 def test_interactive_clients_expose_source_url():
     desktop = (ROOT / "desktop-plugin" / "src" / "plugin.tsx").read_text(encoding="utf-8")
     android = (
