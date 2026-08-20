@@ -55,6 +55,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
+          prerelease_args=()
+          if [[ "$GITHUB_REF_NAME" == *-* ]]; then
+            prerelease_args+=(--prerelease)
+          fi
           gh release create "$GITHUB_REF_NAME" \
             artifacts/AIShop-Hermes-Workbench-phase1.zip \
             artifacts/AIShop-Hermes-Workbench-phase1.zip.sha256 \
@@ -62,4 +66,5 @@ jobs:
             artifacts/aishop-worker-debug.apk.sha256 \
             artifacts/aishop-workbench.spdx.json \
             --generate-notes \
-            --title "AIShop Hermes Workbench $GITHUB_REF_NAME"
+            --title "AIShop Hermes Workbench $GITHUB_REF_NAME" \
+            "${prerelease_args[@]}"
